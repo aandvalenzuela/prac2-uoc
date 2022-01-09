@@ -2,6 +2,7 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 import plotly.graph_objs as go
+import pandas as pd
 
 ########### Define your variables
 beers=['Chesapeake Stout', 'Snake Dog IPA', 'Imperial Porter', 'Double Dog IPA']
@@ -11,7 +12,7 @@ color1='darkred'
 color2='orange'
 mytitle='Beer Comparison'
 tabtitle='beer!'
-myheading='Flying Dog Beers'
+myheading='StackOverflow Developers Survey - Spanish edition'
 label1='IBU'
 label2='ABV'
 githublink='https://github.com/austinlasseter/flying-dog-beers'
@@ -21,6 +22,29 @@ sourceurl='https://www.flyingdog.com/beers/'
 bitterness = go.Bar(
     x=beers,
     y=ibu_values,
+    name=label1,
+    marker={'color':color1}
+)
+
+beer_data = [bitterness]
+beer_layout = go.Layout(
+    barmode='group',
+    title = 'Perfil de los participantes'
+)
+
+beer_fig = go.Figure(data=beer_data, layout=beer_layout)
+
+
+########### Set up the chart - PROFILE
+data21 = pd.read_csv('https://github.com/aandvalenzuela/prac2-uoc/blob/master/survey_results_2021.csv')
+spanish21 = data21[data21['Country']=='Spain']
+sub_spanish21 = spanish21[["MainBranch", "Employment", "EdLevel", "Age", "Gender", "Trans", "Sexuality", "Ethnicity", "Accessibility", "MentalHealth"]]
+
+df1 = sub_spanish21.dropna()
+
+bitterness = go.Bar(
+    x=df1.Age.value_counts(),
+    y=df1.Age.value_counts().index,
     name=label1,
     marker={'color':color1}
 )
@@ -34,11 +58,10 @@ alcohol = go.Bar(
 beer_data = [bitterness, alcohol]
 beer_layout = go.Layout(
     barmode='group',
-    title = 'Andreaaa'
+    title = 'Perfil de los participantes'
 )
 
 beer_fig = go.Figure(data=beer_data, layout=beer_layout)
-
 
 ########### Initiate the app
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
