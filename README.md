@@ -1,1 +1,2 @@
+StackOverflow realiza cada año una encuesta a sus usuarios desarrolladores para conocer las herramientas y tendencias que dan forma cada año al ámbito del desarrollo de software. En el siguiente link presento una visualización que analiza las respuestas de este año 2021 en España y realiza una pequeña comparativa entre los años 2019-2021 y respecto de la tendencia global:
 https://infogram.com/prac2-uoc-1hxr4zxjp1ymq6y
